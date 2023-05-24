@@ -37,6 +37,17 @@ services:
       - 8000:8000
     env_file:
       - plausible-conf.env
+  
+  geoip:
+    image: maxmindinc/geoipupdate
+    restart: unless-stopped
+    environment:
+      - 'GEOIPUPDATE_EDITION_IDS=GeoLite2-ASN GeoLite2-City GeoLite2-Country'
+      - GEOIPUPDATE_FREQUENCY=168 # update every 7 days
+    env_file:
+      geoip/geoip.conf
+    volumes:
+      - geoip:/usr/share/GeoIP
 
 volumes:
   db-data:

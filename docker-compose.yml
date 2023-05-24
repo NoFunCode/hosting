@@ -49,6 +49,9 @@ services:
     volumes:
       - geoip:/usr/share/GeoIP
 
+networks:
+  
+
 volumes:
   db-data:
     driver: local
